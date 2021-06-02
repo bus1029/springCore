@@ -1,12 +1,9 @@
 package hello.springCore.order
 
-import hello.springCore.discount.FixDiscountPolicy
-import hello.springCore.member.MemoryMemberRepository
+import hello.springCore.discount.DiscountPolicy
+import hello.springCore.member.MemberRepository
 
-class OrderServiceImpl : OrderService {
-  private val memberRepository = MemoryMemberRepository()
-  private val discountPolicy = FixDiscountPolicy()
-
+class OrderServiceImpl(private val memberRepository: MemberRepository, private val discountPolicy: DiscountPolicy) : OrderService {
   override fun createOrder(memberId: Long, itemName: String, itemPrice: Int): Order? {
     val findMember = memberRepository.findById(memberId)
     findMember?.let {
