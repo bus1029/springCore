@@ -1,24 +1,25 @@
 package hello.springCore
 
-import hello.springCore.discount.FixDiscountPolicy
 import hello.springCore.discount.RateDiscountPolicy
 import hello.springCore.member.MemberService
 import hello.springCore.member.MemberServiceImpl
 import hello.springCore.member.MemoryMemberRepository
 import hello.springCore.order.OrderService
 import hello.springCore.order.OrderServiceImpl
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 
+@Configuration
 class AppConfig {
-  // Constructor Dependency Injection
-  fun memberService(): MemberService {
-    return MemberServiceImpl(memberRepository())
-  }
+  @Bean
+  fun memberService() = MemberServiceImpl(memberRepository())
 
-  fun orderService(): OrderService {
-    return OrderServiceImpl(memberRepository(), discountPolicy())
-  }
+  @Bean
+  fun orderService() = OrderServiceImpl(memberRepository(), discountPolicy())
 
-  private fun discountPolicy() = RateDiscountPolicy()
+  @Bean
+  fun discountPolicy() = RateDiscountPolicy()
 
-  private fun memberRepository() = MemoryMemberRepository()
+  @Bean
+  fun memberRepository() = MemoryMemberRepository()
 }
