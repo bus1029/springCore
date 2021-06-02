@@ -1,6 +1,7 @@
 package hello.springCore
 
 import hello.springCore.discount.FixDiscountPolicy
+import hello.springCore.discount.RateDiscountPolicy
 import hello.springCore.member.MemberService
 import hello.springCore.member.MemberServiceImpl
 import hello.springCore.member.MemoryMemberRepository
@@ -17,7 +18,7 @@ class AppConfig {
     return OrderServiceImpl(memberRepository(), discountPolicy())
   }
 
-  private fun discountPolicy() = FixDiscountPolicy()
+  private fun discountPolicy() = RateDiscountPolicy()
 
   private fun memberRepository() = MemoryMemberRepository()
 }

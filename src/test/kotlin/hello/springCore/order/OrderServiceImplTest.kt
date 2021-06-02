@@ -29,7 +29,6 @@ class OrderServiceImplTest {
     memberService.join(member)
 
     val order = orderService.createOrder(memberId, "ItemA", 12345)
-    Assertions.assertThat(order?.discountPrice).isEqualTo(1000)
-    Assertions.assertThat(order?.calculatePrice()).isEqualTo(11345)
+    Assertions.assertThat(order?.discountPrice).isEqualTo(1234)
   }
 }
