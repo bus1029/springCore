@@ -1,9 +1,11 @@
 package hello.springCore.singleton
 
 import hello.springCore.AppConfig
+import hello.springCore.member.MemberService
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 class SingletonTest {
   @Test
@@ -36,4 +38,19 @@ class SingletonTest {
     // equal equals()
     Assertions.assertThat(singletonService1).isSameAs(singletonService2)
   }
+
+  @Test
+  @DisplayName("스프링 컨테이너와 싱글톤")
+  fun springContainer() {
+    val ac = AnnotationConfigApplicationContext(AppConfig::class.java)
+    val memberService1 = ac.getBean(MemberService::class.java)
+    val memberService2 = ac.getBean(MemberService::class.java)
+
+    // 참조값이 같음
+    println("memberService1 = $memberService1")
+    println("memberService2 = $memberService2")
+
+    Assertions.assertThat(memberService1).isSameAs(memberService2)
+  }
 }
+
