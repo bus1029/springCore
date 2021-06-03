@@ -1,6 +1,7 @@
 package hello.springCore
 
 import hello.springCore.discount.RateDiscountPolicy
+import hello.springCore.member.MemberRepository
 import hello.springCore.member.MemberService
 import hello.springCore.member.MemberServiceImpl
 import hello.springCore.member.MemoryMemberRepository
@@ -12,14 +13,23 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class AppConfig {
   @Bean
-  fun memberService() = MemberServiceImpl(memberRepository())
+  fun memberService(): MemberService {
+    println("call AppConfig.memberService")
+   return MemberServiceImpl(memberRepository())
+  }
 
   @Bean
-  fun orderService() = OrderServiceImpl(memberRepository(), discountPolicy())
+  fun orderService(): OrderService {
+    println("call AppConfig.orderService")
+    return OrderServiceImpl(memberRepository(), discountPolicy())
+  }
 
   @Bean
   fun discountPolicy() = RateDiscountPolicy()
 
   @Bean
-  fun memberRepository() = MemoryMemberRepository()
+  fun memberRepository(): MemberRepository {
+    println("call AppConfig.memberRepository")
+    return MemoryMemberRepository()
+  }
 }

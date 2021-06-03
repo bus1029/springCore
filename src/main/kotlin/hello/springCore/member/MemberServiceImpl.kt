@@ -8,4 +8,8 @@ class MemberServiceImpl(private val memberRepository: MemberRepository) : Member
   override fun findMember(memberId: Long): Member? {
     return memberRepository.findById(memberId)
   }
+
+  fun getMemberRepository(): MemberRepository {
+    return memberRepository
+  }
 }

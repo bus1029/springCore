@@ -13,4 +13,8 @@ class OrderServiceImpl(private val memberRepository: MemberRepository, private v
 
     return null
   }
+
+  fun getMemberRepository(): MemberRepository {
+    return memberRepository
+  }
 }
