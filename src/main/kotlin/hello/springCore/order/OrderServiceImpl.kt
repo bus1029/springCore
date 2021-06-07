@@ -2,8 +2,11 @@ package hello.springCore.order
 
 import hello.springCore.discount.DiscountPolicy
 import hello.springCore.member.MemberRepository
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 
-class OrderServiceImpl(private val memberRepository: MemberRepository, private val discountPolicy: DiscountPolicy) : OrderService {
+@Component
+class OrderServiceImpl @Autowired constructor(private val memberRepository: MemberRepository, private val discountPolicy: DiscountPolicy) : OrderService {
   override fun createOrder(memberId: Long, itemName: String, itemPrice: Int): Order? {
     val findMember = memberRepository.findById(memberId)
     findMember?.let {
