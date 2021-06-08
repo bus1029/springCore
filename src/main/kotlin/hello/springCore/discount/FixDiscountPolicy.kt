@@ -2,7 +2,10 @@ package hello.springCore.discount
 
 import hello.springCore.member.Grade
 import hello.springCore.member.Member
+import org.springframework.context.annotation.ComponentScan
+import org.springframework.stereotype.Component
 
+@Component
 class FixDiscountPolicy : DiscountPolicy {
   private val discountFixAmount = 1000
 
