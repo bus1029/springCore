@@ -16,7 +16,8 @@ class BeanLifecycleTest {
 
   @Configuration
   class LifeCycleConfig {
-    @Bean(initMethod = "init", destroyMethod = "close")
+//    @Bean(initMethod = "init", destroyMethod = "close")
+    @Bean
     fun networkClient(): NetworkClient {
       val networkClient = NetworkClient()
       // 객체 생성 후 설정이 들어올 수 있음
