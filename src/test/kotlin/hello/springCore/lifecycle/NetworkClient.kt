@@ -1,9 +1,6 @@
 package hello.springCore.lifecycle
 
-import org.springframework.beans.factory.DisposableBean
-import org.springframework.beans.factory.InitializingBean
-
-class NetworkClient : InitializingBean, DisposableBean {
+class NetworkClient {
   var url: String = ""
 
   init {
@@ -22,14 +19,13 @@ class NetworkClient : InitializingBean, DisposableBean {
     println("close $url")
   }
 
-  // 의존관계 주입이 끝나면 호출
-  override fun afterPropertiesSet() {
+  fun init() {
     println("NetworkClient.afterPropertiesSet")
     connect()
     call("초기화 연결 메시지")
   }
 
-  override fun destroy() {
+  fun close() {
     println("NetworkClient.destroy")
     disconnect()
   }
